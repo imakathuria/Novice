@@ -12,7 +12,6 @@ public:
             }
         }
         
-        // for populating the remaining indexes with 0
         while(k<nums.size()){
             nums[k++]=0;
         }
