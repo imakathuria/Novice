@@ -11,7 +11,6 @@ public:
                 nums[k++]=nums[i];
             }
         }
-        
         while(k<nums.size()){
             nums[k++]=0;
         }
