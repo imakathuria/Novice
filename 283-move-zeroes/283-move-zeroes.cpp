@@ -5,16 +5,22 @@ public:
         // for(int i=0;i<nums.size();i++){
         //     if(nums[i]==0)zerosCount++;
         // }
-        int k=0;
+        // int k=0;
+        // for(int i=0;i<nums.size();i++){
+        //     if(nums[i]!=0){
+        //         nums[k++]=nums[i];
+        //     }
+        // }
+        // while(k<nums.size()){
+        //     nums[k++]=0;
+        // }
+        // return;
+        int j=0;
         for(int i=0;i<nums.size();i++){
             if(nums[i]!=0){
-                nums[k++]=nums[i];
+                swap(nums[i],nums[j++]);
             }
         }
-        while(k<nums.size()){
-            nums[k++]=0;
-        }
-        return;
         
     }
 };
