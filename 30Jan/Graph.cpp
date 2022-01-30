@@ -94,14 +94,51 @@ void graph()
     }
     cout<<endl;
 }
+void DFS_Traversal(vector<bool> &visited,int n,int sn,vector<int>&DFS_PATH,vector<int> adj[]){
+    visited[sn]=1;
+    DFS_PATH.pb(sn);
+    for(auto i:adj[sn]){
+        if(!visited[i]){
+            DFS_Traversal(visited,n,i,DFS_PATH,adj);
+        }
+    }
+}
+void graph__DFS(){
+    // Taking input
+    int vertices, edges;
+    cin >> vertices >> edges;
+    vector<int> adj[vertices + 1];
+    for (int i = 1; i <= edges; i++)
+    {
+        int u, v;
+        cin >> u >> v;
+        adj[u].pb(v);
+        adj[v].pb(u);
+    }
+    int n=vertices,m=edges;
+    vector<bool> visited(n,0);
+    vector<int> DFS_PATH;
+    for(int i=1;i<=n;i++){
+        if(!visited[i]){
+            DFS_Traversal(visited,n,i,DFS_PATH,adj);
+        }
+    }
+    for(int i=0;i<DFS_PATH.size();i++){
+        cout<<DFS_PATH[i]<<" ";
+    }
+    cout<<endl;
+    return ;
+}
 int32_t main()
 {
     // c_p_c();
-    graph();
+    // graph();
+    graph__DFS();
     return 0;
 }
 /*
 TC
 5 4 1 2 3 4 4 5 5 3
 5 4 1 4 2 5 3 5 2 3
+5 5 1 5 5 3 4 1 2 4 2 3
 */
