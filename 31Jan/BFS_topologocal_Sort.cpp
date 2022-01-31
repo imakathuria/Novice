@@ -105,6 +105,7 @@ void c_p_c()
 	freopen("output.txt", "w", stdout);
 #endif
 }
+// Kahn's Algorithm (Topological sort using BFS)
 int32_t main()
 {
 	c_p_c();
