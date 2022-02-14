@@ -23,33 +23,25 @@ void c_p_c()
         freopen("output.txt", "w", stdout);
     #endif
 }
+
 void solve(){
-    int n;
-    cin>>n;
-    vector<pair<string,int>> helper{
-        {"Tetrahedron",4},
-        {"Cube",6},
-        {"Octahedron",8},
-        {"Dodecahedron",12},
-        {"Icosahedron",20}
-    };
-    int ans = 0;
-    for(int i=0;i<n;i++){
-        string s;
-        cin>>s;
-        for(int j=0;j<helper.size();j++){
-            if(s==helper[j].first){
-                ans+=helper[j].second;
-                break;
-            }
-        }
+    int wb1,wb2;
+    cin>>wb1>>wb2;
+    int yearCount=0;
+    while(wb1<=wb2){
+        wb1*=3;
+        wb2*=2;
+        yearCount++;
     }
-    cout<<ans<<endl;
-    return;
+    cout<<yearCount<<endl;
 }
 int main()
 {
-    // c_p_c();
+    // c_p_c(); 
+    // int t;
+    // cin>>t;
+    // while(t--)
     solve();
+    
     return 0;
 }
