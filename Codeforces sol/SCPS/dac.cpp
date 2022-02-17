@@ -28,7 +28,31 @@ using namespace std;
 #define sc second
 #define pii pair<int, int>
 #define sumv(arr) accumulate(all(arr),0)
-
+// BSF Check for bipartite
+bool bfsbipartite(vector<bool> &visited, int v, vector<int> adj[], int sv,vector<int> &colour)
+{
+    visited[sv]=1;
+    colour[sv]=1;
+    queue<int>pn;
+    pn.push(sv);
+    while(!pn.empty()){
+        int front = pn.front();
+        int clr = colour[front];
+        pn.pop();
+        for(auto it:adj[front]){
+            if(!visited[it]){
+                visited[it]=1;
+                pn.push(it);
+                colour[it]=1-clr;
+            }
+            else if(colour[it]==clr){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+// BFS traversal to check cycle
 bool bfs(vector<bool> &visited, int v, vector<int> adj[], int sv){
     cout<<"inside bfs"<<endl;
     queue<pii> pn;
@@ -49,18 +73,33 @@ bool bfs(vector<bool> &visited, int v, vector<int> adj[], int sv){
     }
     return false;
 }
+// DFS traversal to check cycle
+bool dfs(vector<bool> &visited, int v, vector<int> adj[], int sv,int par=-1){
+    visited[sv]=1;
+    for(auto it: adj[sv]){
+        if(!visited[it]){
+            if(dfs(visited,v,adj,it,sv)){
+                return true;
+            }
+        }else if(it!=par){
+            return true;
+        }
+    }
+    return false;
+}
 void graphTraversal(int v,vector<bool> &visited,vector<int> adj[]){
     cout<<"Inside graph traversal"<<endl;
+    vector<int> colour(v+1,-1);
     for(int i=1;i<=v;i++){
         if(!visited[i]){
             cout<<i<<" ";
-            if(bfs(visited,v,adj,i)){
-                cout<<"true"<<endl;
+            if(!bfsbipartite(visited,v,adj,i,colour)){
+                cout<<"False"<<endl;
                 return;
             }
         }
     }
-    cout<<"false\n";
+    cout<<"True\n";
     return;
 }
 void graph(){
@@ -110,7 +149,19 @@ int main()
     return 0;
 }
 
-
+/*
+11 9
+1 2
+2 4
+3 5
+5 6
+6 7
+5 10
+10 9
+9 8
+8 11
+7 8
+*/
 /******************************************************************************************         ||                                                                                         ||
 ||                    ░█▀▀▀ ░█▄─░█ ░█▀▀▄ 　 ░█▀▀█ ░█▀▀▀█ ░█▀▀▄ ░█▀▀▀                       ||
 ||                    ░█▀▀▀ ░█░█░█ ░█─░█ 　 ░█─── ░█──░█ ░█─░█ ░█▀▀▀                       ||
