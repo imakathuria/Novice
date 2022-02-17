@@ -1,3 +1,20 @@
-azadzb
-cccccccc
-bmdkkdkdkbsa
+Inside solve
+inside graph
+1110
+0 0 0 0 0 0 0 0 0 0 0 
+Input i : 0 12
+Input i : 1 24
+Input i : 2 35
+Input i : 3 56
+Input i : 4 67
+Input i : 5 510
+Input i : 6 109
+Input i : 7 98
+Input i : 8 811
+Input i : 9 78
+
+calling graphtraversal
+Inside graph traversal
+1 inside bfs
+3 inside bfs
+true
